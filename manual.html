@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style type="text/css">
+    body
+    {
+    font-size: 11px;
+    }
+    h2 {
+    background: linear-gradient(transparent 70%, #a7d6ff 70%);
+    }
+    h3{
+    width: calc(100%/3);
+    height: 30px;
+    background-color: #5c9ee7;
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    margin-bottom: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    }
+    ol{
+    margin-top: 0px;
+    counter-reset:number; /*数字をリセット*/
+    list-style-type: none!important; /*数字を一旦消す*/
+    padding:0.5em;
+    background: #f5faff;
+    }
+    ol li{
+    position: relative;
+    padding-left: 30px;
+    line-height: 1.5em;
+    padding: 0.5em 0.5em 0.5em 30px;
+    }
+
+    ol li:before{
+    /* 以下数字をつける */
+    position: absolute;
+    counter-increment: number;
+    content: counter(number);
+    /*以下数字のデザイン変える*/
+    display:inline-block;
+    background: #5c9ee7;
+    color: white;
+    font-family: 'Avenir','Arial Black','Arial',sans-serif;
+    font-weight:bold;
+    font-size: 12px;
+    border-radius: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align:center;
+    
+    }
+    </style>
+  </head>
+  <body>
+    <h1>使用マニュアル</h1>
+    <p>このシートはPCの納品待ちからキッティング依頼までのやりとりを</p>
+    <p>資産管理チームとSDとで明確化するためのシートです</p>
+    <div>
+        <h2>基本運用</h2>
+        <ol>
+            <li>資産管理チームが<発注日~その他>まで書き込む</li>
+            <li>納品されたら、SDが<納品><SD担当者>を書き込む</li>
+            <li>資産管理チームがキッティング依頼をだしたら<KT依頼>にチェックを入れる</li>
+        </ol>
+    </div>
+    <div>
+        <h2>納品を資産管理チームに通知する</h2>
+        <div class="sub">
+            <p>いくつ納品されても、スクリプトが実行されるまで通知リストとして貯まります。</p>
+            <p>通知したいタイミングになったら実行ください。</p>
+        </div>
+        <ol>
+            <li>納品(T列)に日付を書き込む</li>
+            <li>上部メニュー【■スクリプト】から【納品を通知する】を実行</li>
+            <li>WorkplaceのSD×資産管理Tのfeedに投稿されます</li>
+        </ol>
+    </div>
+    <div>
+        <h2>PC台帳への登録</h2>
+        <h3>資産管理チームの作業</h3>
+        <div>
+            <p>納品待ちPCが出たタイミングで資産管理チームが登録をします</p>
+            <p>▼スクリプトより【新しく台帳登録する】を選択するか、手作業で新規登録してください</p>
+        </div>
+        <h4>台帳自動登録するには</h4>
+        <ol>
+            <li>対象のPCの必須事項を埋めてください</li>
+            <li>必須事項がない場合はその列は黄色くなります</li>
+            <li>準備ができたら▼スクリプトより【新規台帳登録する】をクリック。対象PCの行数を半角数字で書いてください</li>
+            <li>問題なければ作られます。作られた台帳は必ず確認してください</li>
+            <li>作られた台帳は[ステータス: 納品待ち、管理部署: 全社システム本部]になります</li>
+            <li>自動で作られた台帳の変更点や不足点の修正は直接台帳をいじってください</li>
+        </ol>
+        <h4>台帳自動登録できないパターン</h4>
+        <ol>
+            <li>複数台の場合</li>
+            <li>有効じゃない行数を指定された場合</li>
+            <li>台帳URL列にすでに記入がある場合</li>
+            <li>固定資産なのに稟議番号がない場合</li>
+            <li>必要な情報が入力されていない場合</li>
+        </ol>
+        <h3>SDの記入</h3>
+        <div>
+            <p>納品されたら以下を追記します</p>
+        </div>
+        <ol>
+            <li>シリアル</li>
+            <li>レンタルPC契約番号（レンタルのみ）</li>
+            <li>レンタルPC管理番号（レンタルのみ）</li>
+            <li>MACアドレス</li>
+            <li>納品日</li>
+            <li>ステータス: 配布予定</li>
+        </ol>
+    </div>
+  </body>
+</html>
