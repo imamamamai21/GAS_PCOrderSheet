@@ -6,9 +6,12 @@ function inputRentalPc(targetRow) {
   var rentalPcSheet = new RentalPCOderSheet.RentalPcSheet();
   var dateRow = pcOrderSheet.getRowKey('date');
   // 発注日の記載がない行に書き込む
-  var rowNum = pcOrderSheet.sheet.getRange(dateRow + ':' + dateRow).getValues().filter(String).length + 1;
+  var rowNum = pcOrderSheet.sheet.getRange(dateRow + ':' + dateRow).getValues().filter(String).length + 2;
   var referenceData = rentalPcSheet.getValues()[targetRow - 1];
   var index = rentalPcSheet.getIndex();
+
+  var popup = Browser.msgBox(rowNum + '行目に作られます', '管理者社員番号・機種番号などを忘れずに入れてください。', Browser.Buttons.OK_CANCEL);
+  if (popup != 'ok') return;
   
   var sheet = pcOrderSheet.sheet;
   Logger.log(referenceData[index.deliveryPlanDate])
@@ -29,8 +32,6 @@ function inputRentalPc(targetRow) {
   sheet.getRange(pcOrderSheet.getRowKey('isShare') + rowNum).setValue('No');
   sheet.getRange(pcOrderSheet.getRowKey('paidInAdv') + rowNum).setValue('なし');
   sheet.getRange(pcOrderSheet.getRowKey('ringy') + rowNum).setValue(referenceData[index.ringiNo]);
-
-  Browser.msgBox(rowNum + '行目に作られます', '管理者社員番号・機種番号などを忘れずに入れてください。', Browser.Buttons.OK);
 }
 
 function testren() {
