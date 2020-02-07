@@ -6,7 +6,7 @@ function inputRentalPc(targetRow) {
   var rentalPcSheet = new RentalPCOderSheet.RentalPcSheet();
   var dateRow = pcOrderSheet.getRowKey('date');
   // 発注日の記載がない行に書き込む
-  var rowNum = pcOrderSheet.sheet.getRange(dateRow + ':' + dateRow).getValues().filter(String).length + 2;
+  var rowNum = pcOrderSheet.sheet.getRange(dateRow + ':' + dateRow).getValues().filter(String).length + 1;
   var referenceData = rentalPcSheet.getValues()[targetRow - 1];
   var index = rentalPcSheet.getIndex();
 
