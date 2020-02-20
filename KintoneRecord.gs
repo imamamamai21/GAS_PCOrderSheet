@@ -3,6 +3,8 @@
 ////////////////////////////////////////////////////////////
 
 var KintoneRecord = function() {
+  this.api = KintoneApi.caApi.api;
+  
   /**
    * 作成したレコードのURLを作る & シートに登録する
    * @param {number} num 行数
@@ -50,7 +52,7 @@ var KintoneRecord = function() {
     var index = pcOrderSheet.getIndex();
     var ringy = data[index.ringy].toString();
     
-    var response = KintoneApi.caApi.api.postRecord({
+    var response = this.api.postRecord({
       capc_id       : { value: newNo },
       pc_hostname   : { value: 'CAグループPC管理番号' },
       pc_id         : { value: newNo },
@@ -73,7 +75,7 @@ var KintoneRecord = function() {
       rental_status : { value: data[index.rentalPcNo] ? '継続'　: null }, // レンタルステータス
       rental_contractid: { value: data[index.rentalPcNo] }
     });
-    return KintoneApi.caApi.api.getUri(response.id); // 新しい台帳のURL
+    return this.api.getUri(response.id); // 新しい台帳のURL
   }
   /**
    * popupで打ち込んだ数字を配列にして返す
