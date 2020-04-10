@@ -136,8 +136,12 @@ KintoneRecord.prototype = {
         var alert = Browser.msgBox('稟議番号がありませんがこのまま作りますか？', '固定資産のため、キャンセルして' + num + '行目に稟議番号を入力してからやり直してください。子会社など稟議番号がない場合はこのまま進めてください。', Browser.Buttons.OK_CANCEL);
         if(alert === 'cancel') return;
       }
-      if (num === '' || isNg('deliveryArea') || isNg('estimate') || isNg('taskNo') || isNg('cpu') || isNg('productId') ||  isNg('key') || isNg('memory') || isNg('ssd')) {
+      if (num === '' || isNg('deliveryArea') || isNg('estimate') || isNg('taskNo') || isNg('cpu') || isNg('productId') ||  isNg('key') || isNg('memory')) {
         Browser.msgBox('情報が足りないため作成できません', '空欄で黄色になっている箇所は必須項目です。' + num + '行目の足りない箇所に記載してからやり直してください。', Browser.Buttons.OK);
+        return;
+      }
+      if (isNg('ssd') && isNg('hdd')) {
+        Browser.msgBox('ストレージ情報が足りないため作成できません', 'SSDかHDDどちらかを入れてください。' + num + '行目のにどちらか記載してからやり直してください。', Browser.Buttons.OK);
         return;
       }
       // 台帳を作る
